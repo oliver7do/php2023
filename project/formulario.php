@@ -12,22 +12,37 @@
         
         <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
+    $nome = $_POST["nom"];
     $email = $_POST["email"];
-    $mensagem = $_POST["mensagem"];
+    $mensagem = $_POST["data"];
+    $mensagem = $_POST["telefone"];
+    $mensagem = $_POST["message"];
+    $mensagem = $_POST["pets"];
+    $mensagem = $_POST["opcao"];
+    $mensagem = $_POST["aceito"];
 
-    echo "<p><strong>Nome:</strong> $nome</p>";
+    echo "<p><strong>Nom:</strong> $nom</p>";
     echo "<p><strong>E-mail:</strong> $email</p>";
-    echo "<p><strong>Mensagem:</strong> $mensagem</p>";
+    echo "<p><strong>Data:</strong> $data</p>";
+    echo "<p><strong>Tel:</strong> $telefone</p>";
+    echo "<p><strong>Message:</strong> $message</p>";
+    echo "<p><strong>Pets:</strong> $pets</p>";
+    echo "<p><strong>Opcao:</strong> $opcao</p>";
+    echo "<p><strong>Aceito:</strong> $aceito</p>";
 
     $consulta = "SELECT * FROM mensagens";
 $resultado = $conexao->query($consulta);
 
 if ($resultado->num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
-        echo "<p><strong>Nome:</strong> " . $row["nome"] . "</p>";
+        echo "<p><strong>Nom:</strong> " . $row["nom"] . "</p>";
         echo "<p><strong>E-mail:</strong> " . $row["email"] . "</p>";
-        echo "<p><strong>Mensagem:</strong> " . $row["mensagem"] . "</p>";
+        echo "<p><strong>Data:</strong> " . $row["data"] . "</p>";
+        echo "<p><strong>Tel:</strong> " . $row["telefone"] . "</p>";
+        echo "<p><strong>Message:</strong> " . $row["message"] . "</p>";
+        echo "<p><strong>Pets:</strong> " . $row["pets"] . "</p>";
+        echo "<p><strong>Opcao:</strong> " . $row["opcao"] . "</p>";
+        echo "<p><strong>Aceito:</strong> " . $row["aceito"] . "</p>";
         echo "<p><strong>Data de Envio:</strong> " . $row["data_envio"] . "</p>";
         echo "<hr>";
     }
@@ -44,13 +59,13 @@ if ($resultado->num_rows > 0) {
     }
 
     // Preparar e executar a inserção dos dados na tabela
-    $inserir = $conexao->prepare("INSERT INTO mensagens (nome, email, mensagem) VALUES (?, ?, ?)");
-    $inserir->bind_param("sss", $nome, $email, $mensagem);
+    $inserir = $conexao->prepare("INSERT INTO mensagens (nom, email, mensagem) VALUES (?, ?, ?)");
+    $inserir->bind_param("sss", $nome, $email, $data, $telefone, $message, $pets, $opcao, $aceito);
 
     if ($inserir->execute()) {
-        echo "<p>Dados inseridos com sucesso na base de dados!</p>";
+        echo "<p>Données insérées avec succès dans la base de données!</p>";
     } else {
-        echo "<p>Erro ao inserir dados na base de dados: " . $inserir->error . "</p>";
+        echo "<p>Erreur d'insertion de données dans la base de données: " . $inserir->error . "</p>";
     }
 
     // Fechar a conexão

@@ -28,6 +28,11 @@ label {
     font-weight: bold;
 }
 
+select {
+    font-size: 0.9rem;
+    padding: 2px 5px;
+}
+
 input[type="text"],
 input[type="email"],
 textarea {
