@@ -1,4 +1,8 @@
 <?php
+// define("host", "db.cours.com")
+// define("db",)
+// define("host")
+// define("")
 function dbConnexion(){
     $connexion = null;
     try{

@@ -83,6 +83,22 @@ input[type="submit"]:hover {
 .logout-button:hover {
     background-color: #d32f2f;
 }
+.container{
+    display: flex;
+}
+.post{
+    width: 200px;
+    height: 250px;
+    margin: 10px;
+}
+.postimg{
+    width: 200px;
+    height: 200px;
+}
+.postimg img{
+    width: 100%;
+    height: 100%;
+}
 
 .profil{
     width: 100px;

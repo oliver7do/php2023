@@ -69,6 +69,9 @@ if (isset($_POST['connexion'])) {
             $_SESSION["pseudo"] = $utilisateur['pseudo'];
             $_SESSION["img"] = $utilisateur['profil_img'];
 
+
+            setcookie("id_user", $utilisateur['id_membre'], time() +3600, '/', 'localhost', false, true);
+
             header("Location: accueil.php");
         } else {
             echo "mot de passe incorrect";
@@ -87,11 +90,30 @@ if(isset($_POST['publier'])){
     //connexion a la bd
     $dbconnect = dbConnexion();
     // preparation de la requete
-    $request = $dbconnect->prepare("INSERT INTO posts (membre_id, photo, text) VALUES (?,?,?)");
+    $request = $dbconnect->prepare("INSERT INTO post (membre_id, photo, text) VALUES (?,?,?)");
     // execution de la requete
+    // 
     try{
         $request->execute(array($_SESSION["id"], $image_name, $message));
+        header("Location: accueil.php");
     }catch(PDOException $e){
         echo $e ->getMessage();
     }
+}
+
+if(isset($_GET['idpost'])){
+    $dbconnect = dbConnexion(); //connexion a la bd
+    // prepare la requete
+    $request = $dbconnect->prepare("SELECT likes FROM posts WHERE id_post = ?");
+    // executer la requete 
+    $request->execute(array($_GET['idpost']));
+    // on recuperer le resultat
+    $likes = $request->fetch();
+
+    // echo $likes['likes'];
+    // requete pour
+    $request1 = $dbconnect->prepare("UPDATE posts SET likes = ? WHERE id_post =?");
+    // executer la requete
+    $request1->execute(array($likes['likes']+1, $_GET['idpost']));
+    header("Location: accueil.php");
 }
