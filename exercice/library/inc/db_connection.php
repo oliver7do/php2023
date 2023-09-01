@@ -4,7 +4,7 @@ function dbConnexion()
 {
     $connexion = null;
     $host = 'localhost';
-    $dbName = "library";
+    $dbName = "biblio";
     $identify = "root";
     $password = "";
 
