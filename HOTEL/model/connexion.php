@@ -1,5 +1,5 @@
 <?php
-require_once "inc/database.php";
+require_once "./inc/database.php";
 if(isset($_POST['submit'])){
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
         }else{
             // verifier si le mot de passe est correct
             if(password_verify($password, $userInfo['password'])){
-            if($userInfo['role'] == "admin" )
+            if($userInfo['role'] == "admin");
             }else{
                 echo "Ahh tu fais malin";
             }
