@@ -7,6 +7,7 @@ body{
 .collapse{
     display: flex !important; 
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 i{
     font-size: 2em;
