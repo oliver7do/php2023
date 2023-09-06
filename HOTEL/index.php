@@ -13,6 +13,8 @@ $listRoom = roomlist();
             <div class="card-body">
                 <p class="card-text"><?= $room['price']; ?> $/nuit</p>
                 <p class="card-text"><?= $room['category']; ?></p>
+                <p class="card-text"><?= $room['persons']; ?>Persons</p>
+                <a class="btn btn-danger" href="booking.php?room=<?= $room['id_room']; ?> &price=<?= $room['price'] ?>">Book this Room</a>
             </div>
         </div>
     <?php } ?>
